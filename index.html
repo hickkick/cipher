@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {       
+         --color-clifford: #000;      
+        }    
+    </style> -->
+</head>
+
+<body>
+    <div class="container">
+        <!-- <h1 class="text-3xl font-bold underline text-clifford"> Hello world! </h1> -->
+        <div class="header">
+            <h1>🔐 Криптографічний Месенджер</h1>
+            <p>Безпечне шифрування повідомлень з різними методами обміну ключами</p>
+        </div>
+
+        <div class="content">
+            <div class="mode-selector">
+                <button class="mode-btn active" onclick="setMode('shared')">
+                    🔑 Спільний Ключ
+                </button>
+                <button class="mode-btn" onclick="setMode('dh')">
+                    🤝 Diffie-Hellman
+                </button>
+            </div>
+
+            <!-- Режим зі спільним ключем -->
+            <div id="shared-mode" class="shared-section">
+                <div class="section">
+                    <h3>🔑 Режим зі спільним ключем</h3>
+                    <div class="info">
+                        <strong>Як це працює:</strong> Ви і ваш співрозмовник заздалегідь домовляєтесь про секретний
+                        пароль.
+                        Цей пароль перетворюється в ключ для шифрування.
+                    </div>
+
+                    <div class="input-group">
+                        <label>Секретний пароль (відомий обом сторонам):</label>
+                        <input type="password" id="sharedPassword" placeholder="НашСекретнийПароль2024!">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Режим Diffie-Hellman -->
+            <div id="dh-mode" class="dh-section">
+                <div class="section">
+                    <h3>🤝 Режим Diffie-Hellman</h3>
+                    <div class="info">
+                        <strong>Як це працює:</strong> Алгоритм створює спільний секретний ключ без необхідності
+                        попередньо домовлятися про пароль. Безпечний навіть якщо хтось підслуховує!
+                    </div>
+
+                    <button class="btn" onclick="generateDHKeys()">
+                        🎲 Згенерувати мої ключі
+                    </button>
+
+                    <div id="dhKeysGenerated" style="display:none;">
+                        <div class="input-group">
+                            <label>Ваш публічний ключ (відправте співрозмовнику):</label>
+                            <div class="key-display" id="myPublicKey"></div>
+                            <button class="copy-btn" onclick="copyToClipboard('myPublicKey', this)">📋
+                                Копіювати</button>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Публічний ключ співрозмовника (вставте сюди):</label>
+                            <textarea id="theirPublicKey"
+                                placeholder="Вставте публічний ключ, який вам надіслав співрозмовник..."></textarea>
+                        </div>
+
+                        <button class="btn" onclick="computeSharedSecret()">
+                            🔗 Обчислити спільний ключ
+                        </button>
+
+                        <div id="sharedSecretDisplay" style="display:none;">
+                            <div class="input-group">
+                                <label>Спільний секретний ключ:</label>
+                                <div class="key-display" id="sharedSecret"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Шифрування/Дешифрування -->
+            <div class="section">
+                <h3>📝 Шифрування повідомлення</h3>
+                <div class="input-group">
+                    <label>Повідомлення для шифрування:</label>
+                    <textarea id="messageToEncrypt" placeholder="Введіть ваше секретне повідомлення..."></textarea>
+                </div>
+                <button class="btn" onclick="encryptMessage()">🔒 Зашифрувати</button>
+                <div id="encryptedResult" class="result" style="display:none;"></div>
+                <button class="btn" id="sendToTelegramBtn" onclick="sendToTelegram()"
+                    style="display:none; background: linear-gradient(45deg, #0088cc, #229ED9);">
+                    📱 Відправити в Telegram
+                </button>
+            </div>
+
+            <div class="section">
+                <h3>🔓 Дешифрування повідомлення</h3>
+                <div class="input-group">
+                    <label>Зашифроване повідомлення:</label>
+                    <textarea id="messageToDecrypt" placeholder="Вставте зашифроване повідомлення..."></textarea>
+                </div>
+                <button class="btn" onclick="decryptMessage()">🔓 Розшифрувати</button>
+                <div id="decryptedResult" class="result" style="display:none;"></div>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Важливо:</strong> Ніколи не передавайте секретні ключі або паролі через незахищені канали!
+                Використовуйте цей інструмент тільки через HTTPS з'єднання.
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
