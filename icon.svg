@@ -1,0 +1,67 @@
+<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Градієнт для фону -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1f1f1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#121212;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Градієнт для планети -->
+    <radialGradient id="planetGradient" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#404040;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2a2a2a;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Тінь для глибини -->
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Фон з округленими кутами -->
+  <rect width="192" height="192" rx="42" fill="url(#bgGradient)"/>
+  
+  <!-- Планета (основне коло) -->
+  <circle cx="96" cy="96" r="65" fill="url(#planetGradient)" stroke="#404040" stroke-width="1"/>
+  
+  <!-- Меридіани (вертикальні лінії) -->
+  <ellipse cx="96" cy="96" rx="65" ry="65" fill="none" stroke="#505050" stroke-width="1.5"/>
+  <ellipse cx="96" cy="96" rx="52" ry="65" fill="none" stroke="#505050" stroke-width="1"/>
+  <ellipse cx="96" cy="96" rx="32" ry="65" fill="none" stroke="#505050" stroke-width="1"/>
+  <ellipse cx="96" cy="96" rx="16" ry="65" fill="none" stroke="#505050" stroke-width="0.8"/>
+  
+  <!-- Паралелі (горизонтальні лінії) -->
+  <line x1="31" y1="96" x2="161" y2="96" stroke="#505050" stroke-width="1.5"/>
+  <ellipse cx="96" cy="96" rx="65" ry="45" fill="none" stroke="#505050" stroke-width="1"/>
+  <ellipse cx="96" cy="96" rx="65" ry="25" fill="none" stroke="#505050" stroke-width="1"/>
+  
+  <!-- Замок (акцентний колір) -->
+  <g transform="translate(96, 96)" filter="url(#shadow)">
+    <!-- Тіло замка -->
+    <rect x="-12" y="-5" width="24" height="18" rx="2" fill="#1db954" stroke="#1ed760" stroke-width="1"/>
+    
+    <!-- Дужка замка -->
+    <path d="M -8 -5 Q -8 -15, 0 -15 Q 8 -15, 8 -5" 
+          fill="none" 
+          stroke="#1db954" 
+          stroke-width="3" 
+          stroke-linecap="round"/>
+    
+    <!-- Отвір для ключа -->
+    <circle cx="0" cy="2" r="2.5" fill="#121212"/>
+    <rect x="-1" y="2" width="2" height="6" fill="#121212"/>
+    
+    <!-- Блики на замку -->
+    <ellipse cx="-6" cy="-2" rx="2" ry="1" fill="#22c55e" opacity="0.6"/>
+    <ellipse cx="4" cy="8" rx="1.5" ry="0.8" fill="#16a34a" opacity="0.4"/>
+  </g>
+  
+  <!-- Додаткові деталі планети (точки-континенти) -->
+  <circle cx="70" cy="75" r="3" fill="#505050" opacity="0.6"/>
+  <circle cx="130" cy="65" r="2" fill="#505050" opacity="0.5"/>
+  <circle cx="115" cy="120" r="2.5" fill="#505050" opacity="0.4"/>
+  <circle cx="65" cy="125" r="1.5" fill="#505050" opacity="0.7"/>
+  
+  <!-- Тонкий зовнішній обрис для чіткості -->
+  <rect width="192" height="192" rx="42" fill="none" stroke="#2a2a2a" stroke-width="0.5"/>
+</svg>

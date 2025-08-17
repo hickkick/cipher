@@ -148,15 +148,6 @@ body {
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
-/* Фіксуємо мінімальну висоту для мобільних */
-@media (max-height: 640px) {
-    .min-h-screen {
-        min-height: 100vh;
-        min-height: 100svh;
-        /* Safari mobile viewport */
-    }
-}
-
 /* Покращуємо скролінг на мобільних */
 #settingsMenu {
     -webkit-overflow-scrolling: touch;
@@ -174,4 +165,8 @@ body {
         font-size: 16px;
         /* Запобігає зумові на iOS */
     }
+}
+
+#copyNotification {
+    z-index: 11;
 }
