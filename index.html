@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 
-<body class="bg-spotify-dark text-white h-screen flex flex-col overflow-hidden">
+<body class="bg-spotify-dark text-white min-h-screen flex flex-col">
     <!-- Верхній інпут (декриптор) -->
-    <div id="decryptSection" class="bg-spotify-gray p-4 border-b border-spotify-gray hidden">
-        <div class="max-w-4xl mx-auto flex items-center gap-3">
-            <button id="settingsBtn" class="bg-spotify-gray hover:bg-gray-600 p-2 rounded-full transition-colors">
+    <div id="decryptSection" class="bg-spotify-gray p-3 sm:p-4 border-b border-spotify-gray hidden safe-area-top">
+        <div class="max-w-4xl mx-auto flex items-center gap-2 sm:gap-3">
+            <button id="settingsBtn"
+                class="bg-spotify-gray hover:bg-gray-600 p-2 rounded-full transition-colors flex-shrink-0">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
                         d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
@@ -22,45 +23,47 @@
                 </svg>
             </button>
             <input id="decryptInput" type="text" placeholder="Вставте зашифроване повідомлення для дешифрування..."
-                class="flex-1 bg-transparent border border-spotify-gray rounded-full px-4 py-2 text-white placeholder-gray-400 input-focus outline-none decrypt-placeholder">
+                class="flex-1 bg-transparent border border-spotify-gray rounded-full px-3 sm:px-4 py-2 text-white placeholder-gray-400 input-focus outline-none text-sm sm:text-base decrypt-placeholder">
         </div>
     </div>
 
     <!-- Центральна область повідомлень -->
     <div class="flex-1 flex flex-col relative overflow-hidden">
         <!-- Меню налаштувань -->
-        <div id="settingsMenu" class="absolute inset-0 flex items-center justify-center p-6 z-10">
-            <div class="bg-spotify-gray rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
-                <div class="text-center mb-8">
+        <div id="settingsMenu"
+            class="absolute inset-0 flex items-start sm:items-center justify-center p-4 sm:p-6 z-10 overflow-y-auto safe-area-full">
+            <div class="bg-spotify-gray rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl my-4 sm:my-0">
+                <div class="text-center mb-6 sm:mb-8">
                     <div class="flex justify-between items-center mb-4">
                         <div></div>
-                        <h1 class="text-3xl font-bold">🔐</h1>
+                        <h1 class="text-2xl sm:text-3xl font-bold">🔐</h1>
                         <button id="languageBtn"
-                            class="bg-spotify-dark hover:bg-gray-600 px-3 py-1 rounded-lg text-lg font-medium transition-colors lang-btn-text">
+                            class="bg-spotify-dark hover:bg-gray-600 px-2 sm:px-3 py-1 rounded-lg text-base sm:text-lg font-medium transition-colors lang-btn-text">
                             🇺🇦
                         </button>
                     </div>
-                    <h2 class="text-2xl font-bold text-spotify-green mb-2 main-title">Перекладач Таємниць</h2>
-                    <p class="text-gray-400 setup-description">Ваш особистий перекладач між мовою людей і мовою секретів
-                    </p>
+                    <h2 class="text-xl sm:text-2xl font-bold text-spotify-green mb-2 main-title">Перекладач Таємниць
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base setup-description">Ваш особистий перекладач між мовою
+                        людей і мовою секретів</p>
                 </div>
 
-                <div class="space-y-6">
+                <div class="space-y-4 sm:space-y-6">
                     <!-- Вибір методу -->
                     <div>
                         <label class="block text-sm font-medium mb-3 encryption-method-label">Як захистити
                             повідомлення?</label>
-                        <div class="space-y-3">
+                        <div class="space-y-2 sm:space-y-3">
                             <label
                                 class="flex items-center p-3 bg-spotify-dark rounded-lg hover:bg-gray-700 cursor-pointer transition-colors">
                                 <input type="radio" name="method" value="key" class="text-spotify-green" checked
                                     id="key-method">
-                                <span class="ml-3 key-method-text">🔑 Кодова фраза</span>
+                                <span class="ml-3 text-sm sm:text-base key-method-text">🔑 Кодова фраза</span>
                             </label>
                             <label
                                 class="flex items-center p-3 bg-spotify-dark rounded-lg hover:bg-gray-700 cursor-pointer transition-colors">
                                 <input type="radio" name="method" value="dh" class="text-spotify-green" id="dh-method">
-                                <span class="ml-3 dh-method-text">🤝 Автообмін ключами</span>
+                                <span class="ml-3 text-sm sm:text-base dh-method-text">🤝 Автообмін ключами</span>
                             </label>
                         </div>
                     </div>
@@ -70,11 +73,11 @@
                         <label class="block text-sm font-medium mb-2 secret-key-label">Кодова фраза:</label>
                         <div class="relative">
                             <input id="secretKey" type="password" placeholder="Введіть вашу кодову фразу..."
-                                class="w-full bg-spotify-dark border border-spotify-gray rounded-lg px-4 py-3 text-white placeholder-gray-400 input-focus outline-none pr-12 secret-key-placeholder">
+                                class="w-full bg-spotify-dark border border-spotify-gray rounded-lg px-3 sm:px-4 py-3 text-white placeholder-gray-400 input-focus outline-none pr-10 sm:pr-12 text-sm sm:text-base secret-key-placeholder">
                             <button type="button"
-                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                                class="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
                                 onclick="togglePasswordVisibility('secretKey')">
-                                <svg id="secretKey-eye" class="w-5 h-5" fill="none" stroke="currentColor"
+                                <svg id="secretKey-eye" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -88,9 +91,9 @@
 
                     <!-- DH секція -->
                     <div id="dhSection" class="hidden">
-                        <div class="space-y-4">
+                        <div class="space-y-3 sm:space-y-4">
                             <button id="generateDH"
-                                class="w-full bg-spotify-green bg-spotify-green-hover text-black font-medium py-3 px-4 rounded-lg transition-colors generate-dh-text">
+                                class="w-full bg-spotify-green bg-spotify-green-hover text-black font-medium py-3 px-4 rounded-lg transition-colors text-sm sm:text-base generate-dh-text">
                                 Генерувати Diffie-Hellman ключі
                             </button>
                             <div id="dhKeys" class="hidden space-y-3">
@@ -98,25 +101,25 @@
                                     <label class="block text-sm font-medium mb-1 your-public-key-label">Поділіться цим
                                         ключем:</label>
                                     <input id="publicKey" type="text" readonly
-                                        class="w-full bg-spotify-dark border border-spotify-gray rounded-lg px-3 py-2 text-gray-300 text-sm click-to-copy-title">
+                                        class="w-full bg-spotify-dark border border-spotify-gray rounded-lg px-3 py-2 text-gray-300 text-xs sm:text-sm font-mono cursor-pointer hover:bg-gray-800 transition-colors click-to-copy-title">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium mb-1 partner-public-key-label">Публічний
                                         ключ партнера:</label>
                                     <input id="partnerKey" type="text" placeholder="Вставте публічний ключ партнера..."
-                                        class="w-full bg-spotify-dark border border-spotify-gray rounded-lg px-3 py-2 text-white placeholder-gray-400 input-focus outline-none partner-key-placeholder">
+                                        class="w-full bg-spotify-dark border border-spotify-gray rounded-lg px-3 py-2 text-white placeholder-gray-400 input-focus outline-none text-xs sm:text-sm font-mono partner-key-placeholder">
                                 </div>
                                 <div id="sharedSecretDisplay" class="hidden">
                                     <label class="block text-sm font-medium mb-1 shared-key-label">Спільний ключ
                                         шифрування:</label>
                                     <div class="relative">
                                         <input id="sharedSecretText" type="password" readonly
-                                            class="w-full bg-spotify-dark border border-spotify-green rounded-lg px-3 py-2 text-spotify-green text-sm font-mono pr-10 cursor-pointer hover:bg-gray-800 transition-colors"
+                                            class="w-full bg-spotify-dark border border-spotify-green rounded-lg px-3 py-2 text-spotify-green text-xs sm:text-sm font-mono pr-8 sm:pr-10 cursor-pointer hover:bg-gray-800 transition-colors"
                                             title="Клікніть щоб скопіювати">
                                         <button type="button"
-                                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-spotify-green hover:text-green-400 transition-colors"
+                                            class="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 text-spotify-green hover:text-green-400 transition-colors"
                                             onclick="togglePasswordVisibility('sharedSecretText')">
-                                            <svg id="sharedSecretText-eye" class="w-4 h-4" fill="none"
+                                            <svg id="sharedSecretText-eye" class="w-3 h-3 sm:w-4 sm:h-4" fill="none"
                                                 stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -135,7 +138,7 @@
 
                     <!-- Кнопка підтвердження -->
                     <button id="confirmSettings"
-                        class="w-full bg-spotify-green bg-spotify-green-hover text-black font-medium py-3 px-4 rounded-lg transition-colors start-chat-text">
+                        class="w-full bg-spotify-green bg-spotify-green-hover text-black font-medium py-3 px-4 rounded-lg transition-colors text-sm sm:text-base start-chat-text">
                         Почати чат
                     </button>
                 </div>
@@ -144,20 +147,21 @@
 
         <!-- Область чату -->
         <div id="chatArea" class="hidden absolute inset-0 flex flex-col">
-            <div id="messages" class="flex-1 overflow-y-auto p-4 space-y-4 max-w-4xl mx-auto w-full">
+            <div id="messages"
+                class="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 max-w-4xl mx-auto w-full">
                 <!-- Повідомлення будуть додаватися сюди -->
             </div>
         </div>
     </div>
 
     <!-- Нижній інпут (енкриптор) -->
-    <div id="encryptSection" class="bg-spotify-gray p-4 border-t border-spotify-gray hidden">
-        <div class="max-w-4xl mx-auto flex items-center gap-3">
+    <div id="encryptSection" class="bg-spotify-gray p-3 sm:p-4 border-t border-spotify-gray hidden safe-area-bottom">
+        <div class="max-w-4xl mx-auto flex items-center gap-2 sm:gap-3">
             <input id="encryptInput" type="text" placeholder="Введіть повідомлення для шифрування..."
-                class="flex-1 bg-spotify-dark border border-spotify-gray rounded-full px-4 py-2 text-white placeholder-gray-400 input-focus outline-none encrypt-placeholder">
+                class="flex-1 bg-spotify-dark border border-spotify-gray rounded-full px-3 sm:px-4 py-2 text-white placeholder-gray-400 input-focus outline-none text-sm sm:text-base encrypt-placeholder">
             <button id="sendBtn"
-                class="bg-spotify-green bg-spotify-green-hover text-black p-3 rounded-full transition-colors hover:scale-105">
-                <svg class="w-5 h-5 rotate-45" fill="currentColor" viewBox="0 0 20 20">
+                class="bg-spotify-green bg-spotify-green-hover text-black p-2.5 sm:p-3 rounded-full transition-colors hover:scale-105 flex-shrink-0">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 rotate-45" fill="currentColor" viewBox="0 0 20 20">
                     <path
                         d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.429a1 1 0 001.17-1.409l-7-14z">
                     </path>
@@ -168,9 +172,10 @@
 
     <!-- Спливаюче повідомлення про копіювання -->
     <div id="copyNotification"
-        class="fixed top-4 right-4 bg-spotify-green text-black px-4 py-2 rounded-lg shadow-lg hidden transform translate-x-full transition-transform duration-300 copy-notification-text">
+        class="fixed top-4 right-4 bg-spotify-green text-black px-3 sm:px-4 py-2 rounded-lg shadow-lg hidden transform translate-x-full transition-transform duration-300 text-sm sm:text-base copy-notification-text z-100">
         📋 Скопійовано!
     </div>
+
 
     <script src="./main.js"></script>
 </body>

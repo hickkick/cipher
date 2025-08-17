@@ -133,3 +133,45 @@ body {
         border-color: var(--spotify-green);
     }
 }
+
+/* Safe area для iOS */
+.safe-area-top {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+}
+
+.safe-area-bottom {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.safe-area-full {
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* Фіксуємо мінімальну висоту для мобільних */
+@media (max-height: 640px) {
+    .min-h-screen {
+        min-height: 100vh;
+        min-height: 100svh;
+        /* Safari mobile viewport */
+    }
+}
+
+/* Покращуємо скролінг на мобільних */
+#settingsMenu {
+    -webkit-overflow-scrolling: touch;
+}
+
+#messages {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Мобільні налаштування для інпутів */
+@media (max-width: 640px) {
+
+    input[type="text"],
+    input[type="password"] {
+        font-size: 16px;
+        /* Запобігає зумові на iOS */
+    }
+}
